@@ -1,0 +1,56 @@
+.teams {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .team {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .score {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .section-title {
+    font-size: 16px;
+  }
+  
+  .detail-pair {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .detail-pair > div {
+    width: 45%;
+    text-align: center;
+  }
+
+  h2, p {
+    text-align: center;
+  }
+
+  .team-logo {
+    width: 100px; 
+    height: 100px; 
+  }
+  
+  .competition-logo {
+    width: 75px; 
+    height: 75px; 
+  }
+
+  .team-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
