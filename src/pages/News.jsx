@@ -73,9 +73,8 @@ function News() {
             <Image
               src={article.image}
               alt={article.title}
-              w="100%" // Ensure the image takes up the full width of its container
-              h="150px" // Set a minimum height; adjust as needed
-   // Make the image responsive
+              w="100%" 
+              h="150px" 
               rounded="5%"
             />
           </CardBody>
