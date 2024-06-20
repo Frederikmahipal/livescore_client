@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link, Box, Grid, Heading, Text, Image, VStack, Center, Flex, GridItem, useToast } from '@chakra-ui/react';
-import TeamDetails from '../pages/TeamDetails';
+import TeamDetails from '../components/TeamDetails';
 import axios from 'axios';
 
 function MatchDetails() {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Matches from "./pages/Matches";
-import MatchDetails from "./components/MatchDetails";
+import MatchDetails from "./pages/MatchDetails";
 
 import News from "./pages/News";
 import Navbar from "./components/Navbar";
@@ -17,19 +17,16 @@ function App() {
     <ChakraProvider>
       <AuthProvider>
         <Router>
-          <div className="App">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Matches />} />
-              <Route path="/match/:id" element={<MatchDetails />} />
-
-              <Route path="/news" element={<News />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Matches />} />
+            <Route path="/match/:id" element={<MatchDetails />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
         </Router>
-        </AuthProvider > 
+      </AuthProvider >
     </ChakraProvider>
   );
 }

@@ -28,7 +28,11 @@ function News() {
   }, []);
 
   if (loading) {
-    return <Center>Loading...</Center>;
+    return (
+      <div style={{ backgroundColor: '#5E707C', height: '100vh' }}>
+        <Center>Loading...</Center>
+      </div>
+    );
   }
 
   if (error) {

@@ -4,7 +4,6 @@ import fetchMatches from '../services/fetchMatches';
 import { Box, Center, Button, Flex, Heading, Image, Link as ChakraLink, Text, HStack, Grid } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
-
 function Matches() {
   const [matches, setMatches] = useState(null);
   const [error, setError] = useState(null);
@@ -25,16 +24,20 @@ function Matches() {
     }, setError);
   }, []);
 
-
   if (!matches) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ backgroundColor: '#5E707C', height: '100vh' }}>
+        <Center>Loading...</Center>
+      </div>
+    );
   }
 
   // Extracting unique matchdays from the matches array
   const matchdays = [...new Set(matches.map(match => match.matchday))];
-  
+
   const nextMatchday = () => setSelectedMatchday((prevDay) => prevDay + 1);
   const previousMatchday = () => setSelectedMatchday((prevDay) => prevDay - 1);
+
 
   const groupMatchesByGroup = (matches) => {
     return matches.reduce((groups, match) => {
@@ -74,7 +77,9 @@ function Matches() {
             <Box w="100%">
               {matches.slice(0, 2).map((match, matchIndex) => (
                 <Link to={`/match/${match.id}`} key={matchIndex} w="100%">
-                  <Text fontSize="sm" color="white" mt={1}>{new Date(match.utcDate).toLocaleString()}</Text>
+                  <Text fontSize="sm" color="white" mt={1}>
+                    {new Date(match.utcDate).toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
+                  </Text>                  
                   <Flex justify="space-between" p={4} rounded="md" w="100%">
                     <Flex flexDirection="column" alignItems="center">
                       <Image height={["50px", "75px"]} width={["75px", "100px"]} objectFit="cover" src={match.homeTeam.crest} alt={`${match.homeTeam.name} logo`} />
