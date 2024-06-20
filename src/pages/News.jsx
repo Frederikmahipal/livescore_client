@@ -70,8 +70,16 @@ function News() {
             </VStack>
           </CardHeader>
           <CardBody>
-            <Image src={article.image} alt={article.title} w="auto" h="150px" rounded="5%" />
+            <Image
+              src={article.image}
+              alt={article.title}
+              w="100%" // Ensure the image takes up the full width of its container
+              h="150px" // Set a minimum height; adjust as needed
+   // Make the image responsive
+              rounded="5%"
+            />
           </CardBody>
+
           <CardFooter>
             <Flex justifyContent="space-between" w="100%">
               <Button
@@ -105,7 +113,6 @@ function News() {
           <ModalBody overflowY="auto" maxHeight="90vh">
             {selectedArticle && (
               <Flex direction="column" h="100%" align="center">
-                <Image src={selectedArticle.image} alt={selectedArticle.title} w="40%" rounded="3%" h="auto" mb={5} />
                 <Comments articleId={selectedArticle._id} flexGrow="1" />
               </Flex>
             )}
