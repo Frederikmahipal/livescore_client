@@ -70,7 +70,7 @@ function News() {
             </VStack>
           </CardHeader>
           <CardBody>
-            <Image src={article.image} alt={article.title} w="100%" h="auto" rounded="5%" />
+            <Image src={article.image} alt={article.title} w="auto" h="150px" rounded="5%" />
           </CardBody>
           <CardFooter>
             <Flex justifyContent="space-between" w="100%">
