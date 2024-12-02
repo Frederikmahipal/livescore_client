@@ -11,7 +11,7 @@ function MatchDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get(`https://ec2024server.onrender.com/api/matches/${id}`)
+    axios.get(`https://livescore-server.vercel.app/api/matches/${id}`)
       .then(response => {
         setMatch(response.data);
         setLoading(false);

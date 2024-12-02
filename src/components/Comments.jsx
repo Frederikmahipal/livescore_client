@@ -11,7 +11,7 @@ const Comments = ({ articleId }) => {
   const { isAuthenticated, user } = useContext(AuthContext);
   
   useEffect(() => {
-    axios.get(`https://ec2024server.onrender.com/api/${articleId}/comments`)
+    axios.get(`https://livescore-server.vercel.app/api/${articleId}/comments`)
       .then(response => {
         setComments(response.data);
       })
@@ -26,7 +26,7 @@ const Comments = ({ articleId }) => {
       return; 
     }
   
-    axios.post(`https://ec2024server.onrender.com/api/${articleId}/comments`, {
+    axios.post(`https://livescore-server.vercel.app/api/${articleId}/comments`, {
       user: user._id,
       text: newComment
     })

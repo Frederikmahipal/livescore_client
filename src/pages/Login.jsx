@@ -16,7 +16,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://ec2024server.onrender.com/api/login', {
+      const response = await axios.post('https://livescore-server.vercel.app/api/login', {
         email,
         password,
       }, {

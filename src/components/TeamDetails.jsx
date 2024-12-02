@@ -9,7 +9,7 @@ function TeamDetails({ id }) {
   const isBaseBreakpoint = useBreakpointValue({ base: true, md: false });
 
   useEffect(() => {
-    axios.get(`https://ec2024server.onrender.com/api/teams/${id}`)
+    axios.get(`https://livescore-server.vercel.app/api/teams/${id}`)
    .then(response => setTeam(response.data))
    .catch(error => console.error(error));
   }, [id]);

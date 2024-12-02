@@ -16,7 +16,7 @@ function News() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    axios.get('https://ec2024server.onrender.com/api/articles')
+    axios.get('https://livescore-server.vercel.app/api/articles')
       .then(response => {
         setArticles(response.data);
         setLoading(false);
