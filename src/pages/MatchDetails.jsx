@@ -13,7 +13,7 @@ function MatchDetails() {
   useEffect(() => {
     axios.get(`https://livescore-server.vercel.app/api/matches/${id}`)
       .then(response => {
-        setMatch(response.data);
+          setMatch(response.data);
         setLoading(false);
       })
       .catch(err => {
@@ -41,13 +41,13 @@ function MatchDetails() {
               <Flex direction="row" justify="space-around" wrap="wrap" align="center">
 
                 <Flex direction="column" align="center">
-                  <Image height={["50px", "75px"]} width={["75px", "100px"]} objectFit="cover" src={match.homeTeam.crest} alt={match.homeTeam.name} />
+                  <Image height={["50px", "75px"]} width={["75px", "100px"]} objectFit="contain" src={match.homeTeam.crest} alt={match.homeTeam.name} />
                 </Flex>
 
                 <Text fontSize={["xl"]} color="white">{match.status === 'FINISHED' ? `${match.score.fullTime.home} - ${match.score.fullTime.away}` : 'Upcoming'}</Text>
 
                 <Flex direction="column" align="center">
-                  <Image height={["50px", "75px"]} width={["75px", "100px"]} objectFit="cover" src={match.awayTeam.crest} alt={match.awayTeam.name} />
+                  <Image height={["50px", "75px"]} width={["75px", "100px"]} objectFit="contain" src={match.awayTeam.crest} alt={match.awayTeam.name} />
                 </Flex>
               </Flex>
             </Box>

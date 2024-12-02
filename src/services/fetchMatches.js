@@ -8,9 +8,11 @@ async function fetchMatches(setMatches, setError) {
       group: match.group ? match.group.replace('_', ' ') : match.group
     }));
     setMatches(modifiedMatches);
+    setError(null); // Clear any existing errors
   } catch (error) {
     console.error('Fetch error:', error);
-    setError(error.toString());
+    setError('Try again in 60 seconds - API rate limit reached');
+    setMatches(null);
   }
 }
 

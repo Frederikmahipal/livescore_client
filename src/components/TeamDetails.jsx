@@ -67,10 +67,12 @@ function TeamDetails({ id }) {
       case 'left-back':
       case 'centre-back':
       case 'right-back':
+      case 'Defence':
         return 'DEF';
       case 'defensive midfield':
       case 'central midfield':
       case 'attacking midfield':
+      case 'Midfield':
         return 'MID';
       case 'centre-forward':
       case 'left winger':

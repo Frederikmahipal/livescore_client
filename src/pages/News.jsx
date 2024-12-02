@@ -39,87 +39,143 @@ function News() {
     return <Center>Error: {error}</Center>;
   }
 
-
-  return (
-    <Flex flexDirection="row" wrap="wrap" justify="space-around" p={5} mt={0} mb="60px" bgColor="#5E707C">
-      {articles.map((article, index) => (
-        <Card
-          key={index}
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          width={["100%", "80%", "60%"]}
-          maxW="800px"
-          mb={5}
-          p={5}
-          boxShadow="md"
-          borderRadius="md"
-          flexBasis={["100%", "45%"]}
-          bgColor="#3C4F5D"
-        >
-          <CardHeader>
-            <VStack align="start" spacing={4}>
-              <Box h="50px">
-                <Heading mb={2} fontSize={["md", "lg", "xl"]} lineHeight="1.2" fontWeight="bold" color="white">
+    return (
+       <Box 
+    bgColor="#5E707C" 
+    minH="100vh" 
+    position="absolute" // Ensure minimum height covers viewport
+    pb={0}        // Remove bottom padding
+    m={0}         // Remove margin
+  >
+      <Flex 
+        flexDirection="row" 
+        wrap="wrap" 
+        justify="space-around" 
+        p={[3, 5]} 
+        mt={0} 
+        mb="60px" 
+        bgColor="#5E707C"
+        gap={6}
+      >
+        {articles.map((article, index) => (
+          <Card
+            key={index}
+            display="flex"
+            flexDirection="column"
+            width={["95%", "45%", "30%"]}
+            minW="300px"
+            maxW="400px"
+            mb={5}
+            boxShadow="xl"
+            borderRadius="lg"
+            bgColor="#3C4F5D"
+            transition="all 0.2s"
+            _hover={{
+              transform: 'translateY(-5px)',
+              boxShadow: '2xl',
+            }}
+          >
+            <CardHeader p={4}>
+              <VStack align="start" spacing={3}>
+                <Heading 
+                  fontSize={["md", "lg"]} 
+                  lineHeight="1.4" 
+                  fontWeight="bold" 
+                  color="white"
+                  noOfLines={2}
+                >
                   {article.title}
                 </Heading>
-              </Box>
-              <Box h="100px">
-                <Text mb={2} fontSize={["sm", "md", "lg"]} color="white">{article.summary}</Text>
-              </Box>
-            </VStack>
-          </CardHeader>
-          <CardBody>
-            <Image
-              src={article.image}
-              alt={article.title}
-              w="100%" 
-              h="150px" 
-              rounded="5%"
-            />
-          </CardBody>
-
-          <CardFooter>
-            <Flex justifyContent="space-between" w="100%">
-              <Button
-                mt={5}
-                mr={7}
-                p={2}
+                <Text 
+                  fontSize={["sm", "md"]} 
+                  color="gray.300"
+                  noOfLines={3}
+                >
+                  {article.summary}
+                </Text>
+              </VStack>
+            </CardHeader>
+  
+            <CardBody p={4} pt={0}>
+              <Image
+                src={article.image}
+                alt={article.title}
+                w="100%"
+                h="200px"
+                objectFit="cover"
                 borderRadius="md"
-                onClick={() => window.open(article.link, '_blank')}
-              >
-                <ExternalLinkIcon />
-              </Button>
-              <Button
-                mt={5}
-                ml={2}
-                colorScheme="gray"
-                onClick={() => { setSelectedArticle(article); onOpen(); }}
-              >
-                <ChatIcon />
-              </Button>
-            </Flex>
-          </CardFooter>
-        </Card>
-      ))}
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent maxWidth={["95vw", "80vw", "60vw"]} maxHeight={["90vh", "80vh", "60vh"]} p={5} bgColor="#5E707C">
-          <ModalHeader mb={2} fontSize={["md", "lg", "xl"]} lineHeight="1.2" fontWeight="bold" color="white" textAlign="center">
-            {selectedArticle?.title}
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody overflowY="auto" maxHeight="90vh">
-            {selectedArticle && (
-              <Flex direction="column" h="100%" align="center">
-                <Comments articleId={selectedArticle._id} flexGrow="1" />
+                transition="transform 0.2s"
+                _hover={{ transform: 'scale(1.02)' }}
+              />
+            </CardBody>
+  
+            <CardFooter 
+              p={4} 
+              pt={2}
+              borderTop="1px solid"
+              borderColor="whiteAlpha.200"
+            >
+              <Flex justifyContent="space-between" w="100%">
+                <Button
+                  leftIcon={<ExternalLinkIcon />}
+                  variant="outline"
+                  color="white"
+                  _hover={{ bg: 'whiteAlpha.200' }}
+                  size="sm"
+                >
+                  Read More
+                </Button>
+                <Button
+                  leftIcon={<ChatIcon />}
+                  variant="solid"
+                  colorScheme="blue"
+                  size="sm"
+                  onClick={() => { 
+                    setSelectedArticle(article); 
+                    onOpen(); 
+                  }}
+                >
+                  Comments
+                </Button>
               </Flex>
-            )}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </Flex>
-  );
-}
-
+            </CardFooter>
+          </Card>
+        ))}
+  
+        <Modal 
+          isOpen={isOpen} 
+          onClose={onClose}
+          motionPreset="slideInBottom"
+        >
+          <ModalOverlay backdropFilter="blur(4px)" />
+          <ModalContent 
+            maxWidth={["95vw", "80vw", "60vw"]} 
+            maxHeight={["90vh", "80vh", "60vh"]} 
+            bgColor="#3C4F5D"
+            borderRadius="xl"
+          >
+            <ModalHeader 
+              fontSize={["md", "lg", "xl"]} 
+              color="white" 
+              textAlign="center"
+              borderBottom="1px solid"
+              borderColor="whiteAlpha.200"
+              pb={4}
+            >
+              {selectedArticle?.title}
+            </ModalHeader>
+            <ModalCloseButton color="white" />
+            <ModalBody p={6}>
+              {selectedArticle && (
+                <Flex direction="column" h="100%" align="center">
+                  <Comments articleId={selectedArticle._id} flexGrow="1" />
+                </Flex>
+              )}
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </Flex>
+      </Box>
+    );
+  }
 export default News;
